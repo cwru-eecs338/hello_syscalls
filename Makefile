@@ -8,10 +8,16 @@ FLAGS = -g -Wall
 ASM_OUT = asm_main
 ASM_SRC = asm_syscall.s
 
-all: $(ASM_OUT)
+WRITE_OUT = write_main
+WRITE_SRC = write_syscall.c
+
+all: $(ASM_OUT) $(WRITE_OUT)
+
+$(WRITE_OUT): $(WRITE_SRC)
+	$(CC) $(FLAGS) -o $@ $?
 
 $(ASM_OUT): $(ASM_SRC)
-	$(CC) $(FLAGS) -o $(ASM_OUT) $(ASM_SRC)
+	$(CC) $(FLAGS) -o $@ $?
 
 # 'clean' rule for remove non-source files
 # To use, call 'make clean'
