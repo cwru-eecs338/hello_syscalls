@@ -24,7 +24,7 @@ program. However, because printing to the screen in UNIX is the same as writing
 to an abstract file called "standard out," this process requires a system call
 `write()`.
 
-Now, open `write_syscall.c` and see that we have now implemented priting to
+Now, open `write_syscall.c` and see that we have now implemented printing to
 standard out as an explicit call to `write()`. Normally, you have to open a file
 to write to it. When you open a file, you are given a file descriptor (just an
 integer) that you use to specify the file to which you want to write. In this
@@ -39,17 +39,17 @@ at the assembly code helps illustrate how system calls are actually implemented.
 
 At the top of the assembly program, there is a data section that holds the
 string we want to print as well as its length. In the `main` section of the
-program, we first move valuves (via `mov`) into the appropriate registers for
+program, we first move values (via `mov`) into the appropriate registers for
 specifying the system call we want to make.
 
 Every system call has a number assigned to it; the number for `write()` happens
 to be 4, so we move 4 into `rax`. The next three registers hold the arguments to
 `write()`, which are the file descriptor (1), the starting address of the byte
-string (`$message`), and the lenght of the message (`$msg_len`).
+string (`$message`), and the length of the message (`$msg_len`).
 
 After the system call is set up, the instruction `int $0x80` causes an interrupt
 to occur. When this interrupt occurs, control is handed over to the kernel,
-which decides what to do. In this case, it see the intterupt code is `0x80`, so
+which decides what to do. In this case, it see the interrupt code is `0x80`, so
 it knows this is a system call, performs the appropriate call using the values
 placed in the registers, and eventually returns control to the calling process.
 
