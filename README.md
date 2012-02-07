@@ -32,7 +32,7 @@ case, standard out is a special file that always has file descriptor 1, and it
 is already opened for writing. Note that now, we specify the buffer of bytes
 (characters) that we want to the file, as well as the number of bytes to write.
 
-Finally, open `asm_syscall.c`, which is written in x86 assembly. As you probably
+Finally, open `asm_syscall.s`, which is written in x86 assembly. As you probably
 know from compilers or computer architecture, assembly is essentially a human
 readable version of the instructions that are executed by a processor. Looking
 at the assembly code helps illustrate how system calls are actually implemented.
